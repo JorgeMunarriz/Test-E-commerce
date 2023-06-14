@@ -6,12 +6,12 @@ import products from "../../../assets/db/db";
 import "./products.styles.css";
 
 const ProductsContainer: FC<ProductProps | ButtonAction> = (props) => {
-  const { id, title, description, price, img } = products;
-  const [counter, setCounter] = useState(1);
-  const [purchase, setPurchase] = useState(null);
+  
+  const [counter, setCounter] = useState(0);
+  const [purchase, setPurchase] = useState(String);
 
-  function choosePurchase(title: string, price: number) {
-    setPurchase(`${title} - ${price}€`);
+  function choosePurchase( title: string, price: number) {
+    setPurchase(` ${title} - ${price}€`);
     console.log(purchase);
   }
 
@@ -24,42 +24,53 @@ const ProductsContainer: FC<ProductProps | ButtonAction> = (props) => {
 
   useEffect(() => {
     if (purchase !== null) {
-      localStorage.setItem(purchase, counter.toString());
+      localStorage.setItem("purchase", JSON.stringify(purchase));
     }
+  }, [purchase]);
 
-    // lógica para guardar en localStorage
-  }, [counter, purchase]);
   useEffect(() => {
     const savedPurchase = localStorage.getItem("purchase");
     if (savedPurchase) {
       setPurchase(JSON.parse(savedPurchase));
+      console.log(savedPurchase);
     }
   }, []);
+  
+
+  
+  
 
   const cartProductsList = () => {
     const productListDiv = document.querySelector("#productList") as HTMLDivElement;
     const productUl = document.createElement("ul");
     const productLi = document.createElement("li");
+    const productTitle = document.createElement("h3");
     const productBtn = document.createElement("button");
-    productBtn.textContent = purchase;
+    productUl.setAttribute("class", "list-group-item");
+    productLi.setAttribute("class", "list-item")
+    productTitle.textContent = purchase;
+    productBtn.setAttribute("class", "btn btn-danger btn-xs");
+    productBtn.setAttribute("type", "button");
+    productBtn.textContent= "delete"
 
     productListDiv.appendChild(productUl);
     productUl.appendChild(productLi);
-    productLi.appendChild(productBtn);
+    productLi.appendChild(productTitle);
+    productLi.appendChild(productBtn)
   };
-
+  
   return (
     <div className="products">
-      {products.map(({ id, img, title, price, description }) => (
-        <div className="m-2 p-2" key={id}>
+      {products.map(({ prodId, img, title, price, description }) => (
+        <div className="card" key={prodId}>
           <div className="container">
             <div className="card">
               <img src={img} alt="" />
               <div className="card-body">
                 <div className="row">
                   <div className="card-title">
-                    <h4>{title}</h4>
-                    <h3>{price}€</h3>
+                    <h4>{title} {price}€</h4>
+                    <h3></h3>
                   </div>
                   <div className="view-btn">
                     <a href="/">View Details</a>
@@ -68,12 +79,12 @@ const ProductsContainer: FC<ProductProps | ButtonAction> = (props) => {
                 <hr />
                 <p>{description}</p>
                 <div className="btn-group">
-                  <div className="btn">
+                  <div className="btn-xs">
                     <button
-                      type="button"
+                      type="button" className="btn btn-success"
                       onClick={() => {
                         increaseValue();
-                        choosePurchase(title, price);
+                        choosePurchase( title, price);
                         cartProductsList();
                       }}>
                       Buy Now

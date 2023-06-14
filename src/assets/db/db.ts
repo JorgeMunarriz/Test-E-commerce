@@ -3,72 +3,69 @@ import { v4 as uuidv4 } from "uuid";
 import img_1 from '../img/img_1.jpeg'
 import img_2 from '../img/img_2.jpeg'
 import img_3 from '../img/img_3.jpeg'
+import img_4 from '../img/img_4.jpeg'
+import img_5 from '../img/img_5.jpeg'
+import img_6 from '../img/img_6.jpeg'
+import img_7 from '../img/img_7.jpeg'
 
-const id = uuidv4();
+const id1 = uuidv4();
+const id2 = uuidv4()
+const id3 = uuidv4()
+const id4 = uuidv4()
+const id5 = uuidv4()
+const id6 = uuidv4()
+const id7 = uuidv4()
+
 
 const products = [
   {
-    id: id,
+    prodId: id1,
     title: "Nike Runner",
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
     price: 88,
     img: img_1
   },
   {
-    id: id,
+    prodId: id2,
     title: "Puma 80's",
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
     price: 109,
     img: img_2
   },
   {
-    id: id,
+    prodId: id3,
     title: "Nike Rev Lite",
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
     price: 66,
     img: img_3
   },
   {
-    id: id,
-    title: "Nike Runner",
+    prodId: id4,
+    title: "Nike Zoom",
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
-    price: 88,
-    img: img_1
+    price: 130,
+    img: img_4
   },
   {
-    id: id,
-    title: "Puma 80's",
+    prodId: id5,
+    title: "nike Jordan",
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
-    price: 109,
-    img: img_2
+    price: 200,
+    img: img_5
   },
   {
-    id: id,
-    title: "Nike Rev Lite",
+    prodId: id6,
+    title: "Adidas Vs Pace",
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
-    price: 66,
-    img: img_3
+    price: 90,
+    img: img_6
   },
   {
-    id: id,
-    title: "Nike Runner",
+    prodId: id7,
+    title: "Mustang Joggo",
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
-    price: 88,
-    img: img_1
-  },
-  {
-    id: id,
-    title: "Puma 80's",
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
-    price: 109,
-    img: img_2
-  },
-  {
-    id: id,
-    title: "Nike Rev Lite",
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, dignissimos.',
-    price: 66,
-    img: img_3
+    price: 55,
+    img: img_7
   }
 ];
 
