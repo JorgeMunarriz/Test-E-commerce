@@ -7,8 +7,12 @@ import "./products.styles.css";
 
 const ProductsContainer: FC<ProductProps | ButtonAction> = (props) => {
   
+  const productsLS= JSON.parse(localStorage.getItem("products") as string);
   const [counter, setCounter] = useState(0);
-  const [purchase, setPurchase] = useState(String);
+  const [purchase, setPurchase] = useState(productsLS);
+  if(!localStorage.getItem("products")){
+    localStorage.setItem("products", JSON.stringify(purchase));
+  }
 
   function choosePurchase( title: string, price: number) {
     setPurchase(` ${title} - ${price}€`);
@@ -23,13 +27,13 @@ const ProductsContainer: FC<ProductProps | ButtonAction> = (props) => {
   // const counter = "lo que el contador de cada producto diga";
 
   useEffect(() => {
-    if (purchase !== null) {
-      localStorage.setItem("purchase", JSON.stringify(purchase));
+    if (products !== null) {
+      localStorage.setItem("products", JSON.stringify({purchase}));
     }
   }, [purchase]);
 
   useEffect(() => {
-    const savedPurchase = localStorage.getItem("purchase");
+    const savedPurchase = localStorage.getItem("products");
     if (savedPurchase) {
       setPurchase(JSON.parse(savedPurchase));
       console.log(savedPurchase);
